@@ -4,17 +4,18 @@
 namespace App\Controller;
 
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
     /**
-     * page : Acceuil
+     * page/ Action : Acceuil
      */
     public function index()
     {
-        return new Response('<h1>Page Acceuil</h1>');
+        return $this->render('default/index.html.twig');
     }
 
     /**
@@ -22,7 +23,7 @@ class DefaultController
      */
     public function contact()
     {
-        return new Response('<h1>Page Contact</h1>');
+        return $this->render('default/contact.html.twig');
     }
 
     /**
@@ -30,20 +31,19 @@ class DefaultController
      * Permet d'afficher les articles d'une catégorie
      * @Route("/{alias}", name="default_category", methods={"GET"})
      */
-    public function category($alias)
+    public function category()
     {
-        return new Response("<h1>Page $alias</h1>");
+        return $this->render('default/category.html.twig');
     }
-
     /**
      * Page/ Action : Article
      * Permet d'afficher un aticle du site
      * @Route("/{category}/{alias}_{id}.html", name="default_article", methods={"GET"})
      */
+
     public function article()
     {
-        # URL: https://localhost:8000/politique/couvre-feu-quand-la-situation-sanitaire-s-ameliorera-t-elle_14155614.html
-        return new Response("<h1>Page Article</h1>");
+        return $this->render('default/article.html.twig');
     }
 
 }
